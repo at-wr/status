@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status of Alan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Current Status of Alan (<span id="status"><span id="status_loading">Loading...</span></span>)</h1>
+    <div id="desc">
+        The status represents the current state of mine, e.g.: awake or slept.<br>
+        While the status is awake, feel free to contact me. Otherwise, I may not respond immediately.
+    </div>
+    <div id="footer">
+        <a href="https://wrye.dev">Homepage</a>
+        <a href="https://github.com/at-wr/status">GitHub</a>
+    </div>
+</div>
+
+<script>
+    async function fetchStatus() {
+        try {
+            const response = await fetch('https://raw.githubusercontent.com/at-wr/status/main/status.txt');
+            const status = await response.text();
+            document.getElementById('status').textContent = status.trim();
+        } catch (error) {
+            console.error('Error fetching status:', error);
+            document.getElementById('status').textContent = 'Error fetching status';
+        }
+    }
+
+    // Fetch status initially
+    fetchStatus();
+
+    // Fetch status every 10 seconds
+    setInterval(fetchStatus, 10000);
+</script>
+</body>
+</html>
