@@ -1,0 +1,22 @@
+name: Update Status
+
+on:
+  repository_dispatch:
+    types: [update_status]
+
+jobs:
+  update_status:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Update status file
+        run: |
+          echo "${{ github.event.client_payload.status }}" > status.txt
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add status.txt
+          git commit -m "chore(status): Update Status"
+          git push
