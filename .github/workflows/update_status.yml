@@ -1,8 +1,12 @@
 name: Update Status
 
 on:
-  repository_dispatch:
-    types: [update_status]
+  workflow_dispatch:
+    inputs:
+      status:
+        description: 'Current status'
+        required: true
+        type: string
 
 jobs:
   update_status:
@@ -14,7 +18,7 @@ jobs:
 
       - name: Update status file
         run: |
-          echo "${{ github.event.client_payload.status }}" > status.txt
+          echo "${{ github.event.inputs.status }}" > status.txt
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add status.txt
