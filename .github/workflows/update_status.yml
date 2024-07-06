@@ -16,11 +16,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Get current status
+        id: get_status
+        run: |
+          if [[ -f status.txt ]]; then
+            current_status=$(cat status.txt)
+          else
+            current_status=""
+          fi
+          echo "Current status is: $current_status"
+          echo "::set-output name=current_status::$current_status"
+
       - name: Update status file
+        if: ${{ steps.get_status.outputs.current_status != github.event.inputs.status }}
         run: |
           echo "${{ github.event.inputs.status }}" > status.txt
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add status.txt
-          git commit -m "chore(status): Update Status"
+          git commit -m "chore(status): Update Status to ${{ github.event.inputs.status }}"
           git push
