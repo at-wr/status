@@ -1,4 +1,4 @@
-name: Update Status
+name: update-status
 
 on:
   workflow_dispatch:
@@ -25,7 +25,7 @@ jobs:
             current_status=""
           fi
           echo "Current status is: $current_status"
-          echo "::set-output name=current_status::$current_status"
+          echo "current_status=$current_status" >> $GITHUB_OUTPUT
 
       - name: Update status file
         if: ${{ steps.get_status.outputs.current_status != github.event.inputs.status }}
