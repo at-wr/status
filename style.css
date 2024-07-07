@@ -15,11 +15,14 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     max-width: 720px;
+    width: 90%;
+    box-sizing: border-box;
 }
 
 h1 {
     font-size: 1.5em;
     color: #333;
+    text-align: left;
 }
 
 #status {
@@ -35,11 +38,13 @@ h1 {
     margin-top: 20px;
     color: #666;
     line-height: 1.5;
+    text-align: left;
 }
 
 #footer {
     margin-top: 20px;
     margin-bottom: 5px;
+    text-align: left;
 }
 
 #footer a {
@@ -48,6 +53,93 @@ h1 {
     margin-right: 10px;
 }
 
+#footer a:last-child {
+    margin-right: 0;
+}
+
 #footer a:hover {
     text-decoration: underline;
+}
+
+#hidden-text {
+    /* On the right-bottom of desktop */
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    font-size: small;
+    text-align: right;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    user-select: none;
+}
+
+#hidden-text::before {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+}
+
+#hidden-text:hover {
+    opacity: 1;
+    visibility: visible;
+    cursor: pointer;
+}
+
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212;
+        color: #e0e0e0;
+    }
+
+    .container {
+        background-color: #1e1e1e;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+        color: #e0e0e0;
+    }
+
+    #status {
+        color: #79b8ff; /* Light blue for dark mode */
+    }
+
+    #status_loading {
+        color: #888;
+    }
+
+    #desc, #hidden-text {
+        color: #aaaaaa;
+    }
+
+    #footer a {
+        color: #79b8ff;
+    }
+
+    #footer a:hover {
+        text-decoration: underline;
+    }
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.2em;
+    }
+
+    #desc {
+        font-size: 0.9em;
+    }
+
+    #footer a {
+        font-size: 0.9em;
+    }
+
+    #hidden-text {
+        display: none;
+    }
 }
