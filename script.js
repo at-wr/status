@@ -1,6 +1,6 @@
 async function fetchStatus() {
     try {
-        const response = await fetch('https://raw.githubusercontent.com/at-wr/status/main/status.txt');
+        const response = await fetch(`https://raw.githubusercontent.com/at-wr/status/main/status.txt?${new Date().getTime()}`);
         const status = await response.text();
         document.getElementById('status').textContent = status.trim();
     } catch (error) {
@@ -14,6 +14,10 @@ fetchStatus();
 
 // Fetch status every 10 seconds
 setInterval(fetchStatus, 10000);
+
+// Refresh status on click
+document.getElementById('status').addEventListener('click', fetchStatus);
+
 
 // Hidden text
 const emoticon = [

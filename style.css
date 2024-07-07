@@ -28,6 +28,12 @@ h1 {
 #status {
     color: #479de5; /* Default status color */
     font-weight: bold;
+    user-select: none;
+}
+
+#status:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 #status_loading {
