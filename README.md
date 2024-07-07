@@ -19,7 +19,7 @@ To set up automatic status updates, follow these steps:
 
 2. In the Shortcuts app on iOS, create a new shortcut with the following details:
    - **Action:** `Get contents of URL`
-   - **URL:** `https://api.github.com/repos/YOUR-USERNAME/YOUR-REPOSITORY/actions/workflows/update_status.yml/dispatches`
+   - **URL:** `https://api.github.com/repos/YOUR_USERNAME/YOUR_REPOSITORY/actions/workflows/update_status.yml/dispatches`
    - **Method:** `POST`
    - **Headers:**
      - `Accept`: `application/vnd.github.v3+json`
@@ -34,4 +34,4 @@ To set up automatic status updates, follow these steps:
      }
      ```
 
-Replace `YOUR-USERNAME`, `YOUR-REPOSITORY`, `GITHUB_ACCESS_TOKEN`, and `YOUR_STATUS` with your actual GitHub username, repository name, personal access token, and status message, respectively.
+Replace `YOUR_USERNAME`, `YOUR_REPOSITORY`, `GITHUB_ACCESS_TOKEN`, and `YOUR_STATUS` with your actual GitHub username, repository name, personal access token, and status message, respectively.
